@@ -1,5 +1,5 @@
 module Api
-  module v1
+  module V1
 
     class ReviewsController < ApplicationController
       def index
@@ -14,7 +14,7 @@ module Api
         if(review.save)
           render json: ReviewSerializer.new(review).serialized_json
         else
-          render json: { error: review.errors.messages }, status: :unprocessable_entity
+          render json: { error: review.errors.messages }, status: 422
         end
       end
 
@@ -24,7 +24,7 @@ module Api
         if(review.destroy)
           render json: ReviewSerializer.new(review).serialized_json
         else
-          render json: { error: review.errors.messages }, status: :unprocessable_entity
+          render json: { error: review.errors.messages }, status: 422
         end
       end
 

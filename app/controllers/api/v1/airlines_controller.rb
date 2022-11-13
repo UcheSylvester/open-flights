@@ -1,5 +1,5 @@
 module Api
-  module v1
+  module V1
 
     class AirlinesController < ApplicationController
       def index
@@ -20,7 +20,7 @@ module Api
         if(airline.save)
           render json: AirlineSerializer.new(airline).serialized_json
         else 
-          json: { error: airline.errors.messages }, status: :unprocessable_entity
+          render json: { error: airline.errors.messages }, status: 422
         end
       end
 
@@ -30,7 +30,7 @@ module Api
         if(airline.update)
           render json: AirlineSerializer.new(airline, options).serialized_json
         else 
-          render json: { error: airline.errors.messages }, status: :unprocessable_entity
+          render json: { error: airline.errors.messages }, status: 422
         end
       end
 
@@ -40,7 +40,7 @@ module Api
         if(airline.destroy)
           render json: AirlineSerializer.new(airline, options).serialized_json
         else 
-          render json: { error: airline.errors.messages }, status: :unprocessable_entity
+          render json: { error: airline.errors.messages }, status: 422
         end
       end
 
